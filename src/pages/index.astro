@@ -211,7 +211,7 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
       .activities { background: var(--bg-section); }
       .activity-list {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 16px;
         margin-top: 36px;
       }
@@ -225,7 +225,18 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
         gap: 12px;
       }
       .activity-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
-      .activity-item p { font-size: 0.9rem; line-height: 1.6; color: var(--text); }
+      .activity-item p { font-size: 0.88rem; line-height: 1.7; color: var(--text-muted); }
+      .activity-item strong { color: var(--text); }
+      .activity-note {
+        margin-top: 28px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 18px 24px;
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        line-height: 1.9;
+      }
 
       /* ===== 支援団体 ===== */
       .orgs { background: var(--bg); }
@@ -450,30 +461,67 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
         <div class="section-label">Supported Activities</div>
         <h2 class="section-title">助成金の対象となる活動</h2>
         <p class="section-lead">
-          保護犬に関わる以下の活動が、Heartful Eve基金の助成金・補助金の対象です。
-          殺処分ゼロに向けた現場の取り組みを幅広く支援します。
+          Heartful Eve基金の助成金は、殺処分ゼロに向けた現場の具体的な取り組みを対象としています。
+          以下は実際に助成した活動の例です。団体の規模や活動形態を問わず、犬の保護に真剣に向き合う活動を幅広く支援します。
         </p>
         <div class="activity-list">
+
           <div class="activity-item">
             <div class="activity-icon">🐾</div>
-            <p>譲渡活動の強化や<br>保護犬の里親探し</p>
+            <div>
+              <strong style="display:block;margin-bottom:6px;font-size:0.9rem;">里親探し・譲渡活動</strong>
+              <p>愛護センターや多頭飼育崩壊現場から犬を保護し、健康チェック・社会化訓練を経て里親へ繋ぐ譲渡活動。衰弱・高齢・咬傷犬など他の団体が引き受けない犬の保護も対象です。月複数回の譲渡会開催費用なども助成します。</p>
+            </div>
           </div>
+
           <div class="activity-item">
             <div class="activity-icon">✂️</div>
-            <p>避妊・去勢手術の推進や<br>適正飼育の啓発</p>
+            <div>
+              <strong style="display:block;margin-bottom:6px;font-size:0.9rem;">避妊・去勢手術の推進</strong>
+              <p>野犬・放棄犬・保護犬への避妊去勢手術費用を助成します。命の不幸な連鎖を断ち切り、新たな保護犬の発生を防ぐための不妊去勢手術は、殺処分ゼロに直結する最も重要な取り組みのひとつです。手術費・検査費・マイクロチップ装着費なども対象です。</p>
+            </div>
           </div>
-          <div class="activity-item">
-            <div class="activity-icon">🏠</div>
-            <p>一時預かりボランティア</p>
-          </div>
+
           <div class="activity-item">
             <div class="activity-icon">🏥</div>
-            <p>病気・けが等の<br>必要手術・受診</p>
+            <div>
+              <strong style="display:block;margin-bottom:6px;font-size:0.9rem;">保護犬への医療支援</strong>
+              <p>保護直後の初期医療（血液検査・ワクチン・フィラリア検査など）から、腎不全など慢性疾患を持つ保護犬への継続的な点滴・投薬治療まで幅広く対象です。医療費の負担が重く救えない命をなくすための助成です。</p>
+            </div>
           </div>
+
+          <div class="activity-item">
+            <div class="activity-icon">🏠</div>
+            <div>
+              <strong style="display:block;margin-bottom:6px;font-size:0.9rem;">一時預かり・シェルター整備</strong>
+              <p>保護犬を家庭環境に慣らすための一時預かりボランティア活動や、シェルターの衛生管理・消耗品費（消毒液・清掃用具など）も助成対象です。保護犬が心身ともに安定して過ごせる環境づくりを支援します。</p>
+            </div>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon">📣</div>
+            <div>
+              <strong style="display:block;margin-bottom:6px;font-size:0.9rem;">適正飼育の啓発・教育</strong>
+              <p>小中学校への訪問啓発、イベント開催、SNS・メディアでの情報発信など、次世代への動物愛護教育も助成対象です。「飼育放棄をしない」「無計画な繁殖をしない」という意識を社会に根付かせる活動を支援します。</p>
+            </div>
+          </div>
+
           <div class="activity-item">
             <div class="activity-icon">💛</div>
-            <p>その他、犬の保護に<br>かかる活動全般</p>
+            <div>
+              <strong style="display:block;margin-bottom:6px;font-size:0.9rem;">その他の保護活動</strong>
+              <p>譲渡促進グッズの製作（里親候補へのイメージアップ施策）、野犬のTNR活動、多頭飼育崩壊現場からのレスキュー費用など、上記カテゴリに限らず犬の保護に関わる活動全般が対象です。</p>
+            </div>
           </div>
+
+        </div>
+
+        <div class="activity-note">
+          <p>
+            ※人件費は助成対象外です。補助率の制限はありません。<br>
+            ※単価5万円を超える経費は見積書の添付が必要です。<br>
+            ※猫・その他動物の活動は対象外です（犬の保護活動に限ります）。
+          </p>
         </div>
       </div>
     </section>
