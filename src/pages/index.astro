@@ -2,49 +2,518 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const SITE_TITLE = 'Heartful Eve基金';
+const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛護団体を支援する慈善基金です。';
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+<html lang="ja">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      /* ===== リセット・ベース ===== */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --bg:        #FEFBF0;
+        --bg-section:#FDF7E3;
+        --amber:     #C17B3F;
+        --amber-light:#E8A96A;
+        --text:      #2C2416;
+        --text-muted:#7A6A52;
+        --border:    #E8D9BF;
+        --white:     #FFFFFF;
+        --radius:    12px;
+        --max-w:     1100px;
+      }
+
+      html { background: var(--bg); color: var(--text); font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif; }
+
+      /* ===== HERO ===== */
+      .hero {
+        background: var(--bg);
+        padding: 80px 24px 64px;
+        text-align: center;
+        border-bottom: 1px solid var(--border);
+      }
+      .hero-eyebrow {
+        display: inline-block;
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+        color: var(--amber);
+        border: 1px solid var(--amber-light);
+        border-radius: 999px;
+        padding: 4px 16px;
+        margin-bottom: 28px;
+      }
+      .hero h1 {
+        font-size: clamp(2rem, 5vw, 3.2rem);
+        font-weight: 700;
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+        margin-bottom: 20px;
+        color: var(--text);
+      }
+      .hero h1 span {
+        color: var(--amber);
+      }
+      .hero-desc {
+        font-size: clamp(0.95rem, 2vw, 1.1rem);
+        color: var(--text-muted);
+        line-height: 1.8;
+        max-width: 620px;
+        margin: 0 auto 48px;
+      }
+
+      /* ===== 写真3枚 ===== */
+      .hero-photos {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr 1fr;
+        gap: 12px;
+        max-width: 860px;
+        margin: 0 auto;
+        align-items: center;
+      }
+      .hero-photos img {
+        width: 100%;
+        border-radius: var(--radius);
+        object-fit: cover;
+        box-shadow: 0 4px 20px rgba(44,36,22,0.10);
+      }
+      .hero-photos img:nth-child(1) { height: 220px; }
+      .hero-photos img:nth-child(2) { height: 300px; border-radius: 16px; }
+      .hero-photos img:nth-child(3) { height: 220px; }
+
+      /* ===== STATUS BADGE ===== */
+      .status-bar {
+        background: var(--text);
+        color: var(--bg);
+        text-align: center;
+        padding: 14px 24px;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+      }
+      .status-bar span {
+        color: var(--amber-light);
+        font-weight: 700;
+      }
+
+      /* ===== SECTION COMMON ===== */
+      section { padding: 72px 24px; }
+      .inner { max-width: var(--max-w); margin: 0 auto; }
+      .section-label {
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        color: var(--amber);
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .section-title {
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        font-weight: 700;
+        line-height: 1.3;
+        margin-bottom: 16px;
+      }
+      .section-lead {
+        color: var(--text-muted);
+        line-height: 1.85;
+        font-size: 0.97rem;
+        max-width: 680px;
+      }
+
+      /* ===== 基金概要 ===== */
+      .about { background: var(--bg-section); }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 40px;
+      }
+      .about-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 28px;
+      }
+      .about-card h3 {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+        letter-spacing: 0.05em;
+      }
+      .about-card p {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--text);
+      }
+      .about-card .big {
+        font-size: 1.7rem;
+        font-weight: 700;
+        color: var(--amber);
+        line-height: 1.2;
+        margin-bottom: 4px;
+      }
+
+      /* ===== 活動分野 ===== */
+      .activities { background: var(--bg); }
+      .activity-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin-top: 36px;
+      }
+      .activity-item {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 20px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .activity-icon {
+        font-size: 1.4rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .activity-item p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: var(--text);
+      }
+
+      /* ===== 支援団体 ===== */
+      .orgs { background: var(--bg-section); }
+      .orgs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 40px;
+      }
+      .org-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 24px;
+        transition: box-shadow 0.2s;
+      }
+      .org-card:hover {
+        box-shadow: 0 6px 24px rgba(193,123,63,0.12);
+      }
+      .org-pref {
+        display: inline-block;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        color: var(--amber);
+        border: 1px solid var(--amber-light);
+        border-radius: 999px;
+        padding: 2px 10px;
+        margin-bottom: 10px;
+      }
+      .org-card h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+        line-height: 1.4;
+      }
+      .org-card .org-project {
+        font-size: 0.8rem;
+        color: var(--amber);
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+      .org-card p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.7;
+        margin-bottom: 16px;
+      }
+      .org-links {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .org-link {
+        font-size: 0.75rem;
+        color: var(--amber);
+        text-decoration: none;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 4px 10px;
+        transition: background 0.15s, color 0.15s;
+      }
+      .org-link:hover {
+        background: var(--amber);
+        color: var(--white);
+        border-color: var(--amber);
+      }
+
+      /* ===== INFO ===== */
+      .info { background: var(--bg); }
+      .info-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 32px;
+        font-size: 0.9rem;
+      }
+      .info-table tr {
+        border-bottom: 1px solid var(--border);
+      }
+      .info-table th {
+        width: 180px;
+        text-align: left;
+        padding: 16px 0;
+        color: var(--text-muted);
+        font-weight: 500;
+        vertical-align: top;
+      }
+      .info-table td {
+        padding: 16px 0;
+        line-height: 1.7;
+      }
+
+      /* ===== FOOTER ===== */
+      .site-footer {
+        background: var(--text);
+        color: rgba(254,251,240,0.6);
+        text-align: center;
+        padding: 40px 24px;
+        font-size: 0.8rem;
+        line-height: 1.8;
+      }
+      .site-footer strong {
+        color: var(--bg);
+      }
+      .site-footer a {
+        color: var(--amber-light);
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 680px) {
+        .hero-photos { grid-template-columns: 1fr 1fr; }
+        .hero-photos img:nth-child(3) { display: none; }
+        .hero-photos img { height: 180px !important; }
+        .about-grid { grid-template-columns: 1fr; }
+        .info-table th { width: 120px; font-size: 0.82rem; }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-eyebrow">Heartful Eve 基金</div>
+      <h1>犬と人が、<span>ともに生きる</span>社会へ。</h1>
+      <p class="hero-desc">
+        Heartful Eve基金は、犬の殺処分ゼロを目指す取り組みを支援するために設立された慈善基金です。
+        関東地方で活動する保護団体・個人を対象に、保護・譲渡・避妊去勢・啓発活動を助成しています。
+      </p>
+      <div class="hero-photos">
+        <img src="/IMG_0380.JPG" alt="お散歩中のチワワ" />
+        <img src="/IIKY9380.jpg" alt="ケーキをじっと見つめるチワワ" />
+        <img src="/IMG_0587.JPG" alt="くつろぐチワワ" />
+      </div>
+    </section>
+
+    <!-- STATUS -->
+    <div class="status-bar">
+      第2回募集は終了しました。現在、<span>6団体</span>への支援を実施中です（2026年4月〜2027年3月）。
+    </div>
+
+    <!-- 基金概要 -->
+    <section class="about">
+      <div class="inner">
+        <div class="section-label">About</div>
+        <h2 class="section-title">基金について</h2>
+        <p class="section-lead">
+          この基金は、「犬の殺処分を減らしたい」という想いを持つ匿名の個人が設立しました。
+          公益財団法人公益推進協会を通じて、関東1都6県で活動する非営利団体・個人を支援しています。
+        </p>
+        <div class="about-grid">
+          <div class="about-card">
+            <h3>運営財団</h3>
+            <p>公益財団法人<br><strong>公益推進協会</strong></p>
+          </div>
+          <div class="about-card">
+            <h3>支援対象エリア</h3>
+            <p>関東1都6県<br>（東京・神奈川・埼玉・千葉・茨城・栃木・群馬）</p>
+          </div>
+          <div class="about-card">
+            <h3>第2回 助成実績</h3>
+            <div class="big">6団体</div>
+            <p>合計 最大180万円を支援</p>
+          </div>
+          <div class="about-card">
+            <h3>助成対象期間</h3>
+            <p>2026年4月1日<br>〜 2027年3月31日</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 活動分野 -->
+    <section class="activities">
+      <div class="inner">
+        <div class="section-label">Supported Activities</div>
+        <h2 class="section-title">支援している活動</h2>
+        <p class="section-lead">保護犬に関わる以下の活動を助成対象としています。</p>
+        <div class="activity-list">
+          <div class="activity-item">
+            <div class="activity-icon">🐾</div>
+            <p>譲渡活動の強化や保護犬の里親探し</p>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">✂️</div>
+            <p>避妊・去勢手術の推進や適正飼育の啓発</p>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">🏠</div>
+            <p>一時預かりボランティア</p>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">🏥</div>
+            <p>病気・けが等の必要手術、受診</p>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">💛</div>
+            <p>その他、犬の保護にかかる活動全般</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 支援団体 -->
+    <section class="orgs">
+      <div class="inner">
+        <div class="section-label">Supported Organizations</div>
+        <h2 class="section-title">第2回 支援団体</h2>
+        <p class="section-lead">
+          2026年度は以下の6団体を支援しています。それぞれの活動詳細はリンクからご覧ください。
+        </p>
+        <div class="orgs-grid">
+
+          <div class="org-card">
+            <span class="org-pref">東京都</span>
+            <h3>一般社団法人ワタシニデキルコト</h3>
+            <div class="org-project">命を見捨てない！引き受け先のない保護犬を引き取る活動</div>
+            <p>愛護センターや一般相談から、他の団体が引き受けない疾患・高齢・咬傷犬も積極的に保護。動物行動学専門獣医師と連携し、一匹ずつ丁寧に社会化訓練を行い譲渡へ繋げています。</p>
+            <div class="org-links">
+              <a class="org-link" href="https://watadeki.com/" target="_blank" rel="noopener">HP</a>
+              <a class="org-link" href="https://www.instagram.com/watashini_dekirukoto/" target="_blank" rel="noopener">Instagram</a>
+            </div>
+          </div>
+
+          <div class="org-card">
+            <span class="org-pref">神奈川県</span>
+            <h3>WAN'S LIFE 湘南里親</h3>
+            <div class="org-project">保護犬猫の譲渡活動</div>
+            <p>神奈川県動物愛護センター登録ボランティアとして、放棄された犬猫をレスキュー。月3〜4回の譲渡会を開催し、不妊去勢手術と適正飼育指導を徹底しています。</p>
+            <div class="org-links">
+              <a class="org-link" href="https://sites.google.com/site/satooyashonan/" target="_blank" rel="noopener">HP</a>
+              <a class="org-link" href="https://www.instagram.com/wanslifeshonansatooya/" target="_blank" rel="noopener">Instagram</a>
+            </div>
+          </div>
+
+          <div class="org-card">
+            <span class="org-pref">神奈川県</span>
+            <h3>特定非営利活動法人 Pooch Dog Rescue</h3>
+            <div class="org-project">保護犬への避妊去勢手術事業</div>
+            <p>飼育放棄・収容・野犬を保護し、医療と心のケアを施して新たな飼い主へ。避妊去勢手術により命の不幸な連鎖を断ち切り、地域の殺処分ゼロ継続を目指します。</p>
+            <div class="org-links">
+              <a class="org-link" href="https://poochdogrescue.com/" target="_blank" rel="noopener">HP</a>
+              <a class="org-link" href="https://www.instagram.com/poochdogrescue/" target="_blank" rel="noopener">Instagram</a>
+            </div>
+          </div>
+
+          <div class="org-card">
+            <span class="org-pref">茨城県</span>
+            <h3>認定特定非営利活動法人 キドックス</h3>
+            <div class="org-project">保護犬への医療支援と譲渡促進事業</div>
+            <p>不登校・引きこもりの子ども若者と保護犬の両者の再出発を支援するユニークな団体。持病を抱える犬への継続医療と、保護犬カフェでの里親マッチングを行っています。</p>
+            <div class="org-links">
+              <a class="org-link" href="https://kidogs.org/" target="_blank" rel="noopener">HP</a>
+              <a class="org-link" href="https://www.instagram.com/kidogsfarm/" target="_blank" rel="noopener">Instagram</a>
+            </div>
+          </div>
+
+          <div class="org-card">
+            <span class="org-pref">東京都</span>
+            <h3>特定非営利活動法人 家庭犬しつけ協会</h3>
+            <div class="org-project">避妊去勢手術の推進</div>
+            <p>茨城県動物指導センターと連携し、野犬の引き取りと不妊去勢手術を推進。里親への適切な飼育指導も行い、新たな保護犬の発生防止に取り組んでいます。</p>
+            <div class="org-links">
+              <a class="org-link" href="https://cdta.or.jp/activity/protect/" target="_blank" rel="noopener">HP</a>
+              <a class="org-link" href="https://www.instagram.com/kateikensitsuke_kyoukai" target="_blank" rel="noopener">Instagram</a>
+            </div>
+          </div>
+
+          <div class="org-card">
+            <span class="org-pref">東京都</span>
+            <h3>アイドッグ・レスキュー隊</h3>
+            <div class="org-project">行き場のない犬の保護と里親探し</div>
+            <p>年間100頭前後の保護犬を引き取り、全頭に避妊去勢手術を実施。高齢犬・病気犬も積極的に受け入れ、小中学校への啓発訪問も精力的に続けています。</p>
+            <div class="org-links">
+              <a class="org-link" href="http://aidog.jpn.com/" target="_blank" rel="noopener">HP</a>
+              <a class="org-link" href="https://www.instagram.com/aidog_rescue/" target="_blank" rel="noopener">Instagram</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 基金情報 -->
+    <section class="info">
+      <div class="inner">
+        <div class="section-label">Fund Info</div>
+        <h2 class="section-title">基金情報</h2>
+        <table class="info-table">
+          <tr>
+            <th>基金名称</th>
+            <td>Heartful Eve 基金（第2回）</td>
+          </tr>
+          <tr>
+            <th>設立目的</th>
+            <td>犬の殺処分を減らすための取り組みを支援し、犬と人間がいつまでも共生できる社会を目指す</td>
+          </tr>
+          <tr>
+            <th>寄付者</th>
+            <td>匿名</td>
+          </tr>
+          <tr>
+            <th>運営</th>
+            <td>公益財団法人 公益推進協会<br>〒162-0826 東京都新宿区市谷船河原町9-3 公益ビル</td>
+          </tr>
+          <tr>
+            <th>対象エリア</th>
+            <td>関東1都6県（茨城・栃木・群馬・埼玉・千葉・東京・神奈川）</td>
+          </tr>
+          <tr>
+            <th>第2回募集期間</th>
+            <td>2026年1月5日 〜 2026年3月31日（募集終了）</td>
+          </tr>
+          <tr>
+            <th>助成対象期間</th>
+            <td>2026年4月1日 〜 2027年3月31日</td>
+          </tr>
+          <tr>
+            <th>お問い合わせ</th>
+            <td><a href="mailto:info@kosuikyo.com">info@kosuikyo.com</a><br>件名：「【問合せ】Heartful Eve基金_団体名」</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <strong>Heartful Eve 基金</strong><br>
+      運営：公益財団法人 公益推進協会<br>
+      <a href="https://kosuikyo.com/" target="_blank" rel="noopener">kosuikyo.com</a>
+      <br><br>
+      © 2026 Heartful Eve 基金
+    </footer>
+
+  </body>
 </html>
