@@ -250,10 +250,21 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
         background: var(--white);
         border: 1px solid var(--border);
         border-radius: var(--radius);
-        padding: 24px;
+        overflow: hidden;
         transition: box-shadow 0.2s;
       }
       .org-card:hover { box-shadow: 0 6px 24px rgba(193,123,63,0.12); }
+      .org-ig-thumb {
+        display: block;
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        object-position: top;
+        border-bottom: 1px solid var(--border);
+        transition: opacity 0.2s;
+      }
+      .org-ig-thumb:hover { opacity: 0.88; }
+      .org-card-body { padding: 20px 24px 24px; }
       .org-pref {
         display: inline-block;
         font-size: 0.7rem;
@@ -538,68 +549,86 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
         <div class="orgs-grid">
 
           <div class="org-card">
-            <span class="org-pref">東京都</span>
-            <h3>一般社団法人ワタシニデキルコト</h3>
-            <div class="org-project">命を見捨てない！引き受け先のない保護犬を引き取る活動</div>
-            <p>愛護センターや一般相談から、他の団体が引き受けない疾患・高齢・咬傷犬も積極的に保護。動物行動学専門獣医師と連携し、一匹ずつ丁寧に社会化訓練を行い譲渡へ繋げています。</p>
-            <div class="org-links">
-              <a class="org-link" href="https://watadeki.com/" target="_blank" rel="noopener">HP</a>
-              <a class="org-link" href="https://www.instagram.com/watashini_dekirukoto/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.instagram.com/watashini_dekirukoto/" target="_blank" rel="noopener">
+              <img class="org-ig-thumb" src="/watashini-dekirukoto-instagram.png" alt="一般社団法人ワタシニデキルコト Instagramプロフィール" />
+            </a>
+            <div class="org-card-body">
+              <span class="org-pref">東京都</span>
+              <h3>一般社団法人ワタシニデキルコト</h3>
+              <div class="org-project">命を見捨てない！引き受け先のない保護犬を引き取る活動</div>
+              <p>愛護センターや一般相談から、他の団体が引き受けない疾患・高齢・咬傷犬も積極的に保護。動物行動学専門獣医師と連携し、一匹ずつ丁寧に社会化訓練を行い譲渡へ繋げています。</p>
+              <div class="org-links">
+                <a class="org-link" href="https://watadeki.com/" target="_blank" rel="noopener">HP</a>
+                <a class="org-link" href="https://www.instagram.com/watashini_dekirukoto/" target="_blank" rel="noopener">Instagram</a>
+              </div>
             </div>
           </div>
 
           <div class="org-card">
-            <span class="org-pref">神奈川県</span>
-            <h3>WAN'S LIFE 湘南里親</h3>
-            <div class="org-project">保護犬猫の譲渡活動</div>
-            <p>神奈川県動物愛護センター登録ボランティアとして、放棄された犬猫をレスキュー。月3〜4回の譲渡会を開催し、不妊去勢手術と適正飼育指導を徹底しています。</p>
-            <div class="org-links">
-              <a class="org-link" href="https://sites.google.com/site/satooyashonan/" target="_blank" rel="noopener">HP</a>
-              <a class="org-link" href="https://www.instagram.com/wanslifeshonansatooya/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.instagram.com/wanslifeshonansatooya/" target="_blank" rel="noopener">
+              <img class="org-ig-thumb" src="/wanslifeshonan.png" alt="WAN'S LIFE 湘南里親 Instagramプロフィール" />
+            </a>
+            <div class="org-card-body">
+              <span class="org-pref">神奈川県</span>
+              <h3>WAN'S LIFE 湘南里親</h3>
+              <div class="org-project">保護犬猫の譲渡活動</div>
+              <p>神奈川県動物愛護センター登録ボランティアとして、放棄された犬猫をレスキュー。月3〜4回の譲渡会を開催し、不妊去勢手術と適正飼育指導を徹底しています。</p>
+              <div class="org-links">
+                <a class="org-link" href="https://sites.google.com/site/satooyashonan/" target="_blank" rel="noopener">HP</a>
+                <a class="org-link" href="https://www.instagram.com/wanslifeshonansatooya/" target="_blank" rel="noopener">Instagram</a>
+              </div>
             </div>
           </div>
 
           <div class="org-card">
-            <span class="org-pref">神奈川県</span>
-            <h3>特定非営利活動法人 Pooch Dog Rescue</h3>
-            <div class="org-project">保護犬への避妊去勢手術事業</div>
-            <p>飼育放棄・収容・野犬を保護し、医療と心のケアを施して新たな飼い主へ。避妊去勢手術により命の不幸な連鎖を断ち切り、地域の殺処分ゼロ継続を目指します。</p>
-            <div class="org-links">
-              <a class="org-link" href="https://poochdogrescue.com/" target="_blank" rel="noopener">HP</a>
-              <a class="org-link" href="https://www.instagram.com/poochdogrescue/" target="_blank" rel="noopener">Instagram</a>
+            <div class="org-card-body">
+              <span class="org-pref">神奈川県</span>
+              <h3>特定非営利活動法人 Pooch Dog Rescue</h3>
+              <div class="org-project">保護犬への避妊去勢手術事業</div>
+              <p>飼育放棄・収容・野犬を保護し、医療と心のケアを施して新たな飼い主へ。避妊去勢手術により命の不幸な連鎖を断ち切り、地域の殺処分ゼロ継続を目指します。</p>
+              <div class="org-links">
+                <a class="org-link" href="https://poochdogrescue.com/" target="_blank" rel="noopener">HP</a>
+                <a class="org-link" href="https://www.instagram.com/poochdogrescue/" target="_blank" rel="noopener">Instagram</a>
+              </div>
             </div>
           </div>
 
           <div class="org-card">
-            <span class="org-pref">茨城県</span>
-            <h3>認定特定非営利活動法人 キドックス</h3>
-            <div class="org-project">保護犬への医療支援と譲渡促進事業</div>
-            <p>不登校・引きこもりの子ども若者と保護犬の両者の再出発を支援するユニークな団体。持病を抱える犬への継続医療と、保護犬カフェでの里親マッチングを行っています。</p>
-            <div class="org-links">
-              <a class="org-link" href="https://kidogs.org/" target="_blank" rel="noopener">HP</a>
-              <a class="org-link" href="https://www.instagram.com/kidogsfarm/" target="_blank" rel="noopener">Instagram</a>
+            <div class="org-card-body">
+              <span class="org-pref">茨城県</span>
+              <h3>認定特定非営利活動法人 キドックス</h3>
+              <div class="org-project">保護犬への医療支援と譲渡促進事業</div>
+              <p>不登校・引きこもりの子ども若者と保護犬の両者の再出発を支援するユニークな団体。持病を抱える犬への継続医療と、保護犬カフェでの里親マッチングを行っています。</p>
+              <div class="org-links">
+                <a class="org-link" href="https://kidogs.org/" target="_blank" rel="noopener">HP</a>
+                <a class="org-link" href="https://www.instagram.com/kidogsfarm/" target="_blank" rel="noopener">Instagram</a>
+              </div>
             </div>
           </div>
 
           <div class="org-card">
-            <span class="org-pref">東京都</span>
-            <h3>特定非営利活動法人 家庭犬しつけ協会</h3>
-            <div class="org-project">避妊去勢手術の推進</div>
-            <p>茨城県動物指導センターと連携し、野犬の引き取りと不妊去勢手術を推進。里親への適切な飼育指導も行い、新たな保護犬の発生防止に取り組んでいます。</p>
-            <div class="org-links">
-              <a class="org-link" href="https://cdta.or.jp/activity/protect/" target="_blank" rel="noopener">HP</a>
-              <a class="org-link" href="https://www.instagram.com/kateikensitsuke_kyoukai" target="_blank" rel="noopener">Instagram</a>
+            <div class="org-card-body">
+              <span class="org-pref">東京都</span>
+              <h3>特定非営利活動法人 家庭犬しつけ協会</h3>
+              <div class="org-project">避妊去勢手術の推進</div>
+              <p>茨城県動物指導センターと連携し、野犬の引き取りと不妊去勢手術を推進。里親への適切な飼育指導も行い、新たな保護犬の発生防止に取り組んでいます。</p>
+              <div class="org-links">
+                <a class="org-link" href="https://cdta.or.jp/activity/protect/" target="_blank" rel="noopener">HP</a>
+                <a class="org-link" href="https://www.instagram.com/kateikensitsuke_kyoukai" target="_blank" rel="noopener">Instagram</a>
+              </div>
             </div>
           </div>
 
           <div class="org-card">
-            <span class="org-pref">東京都</span>
-            <h3>アイドッグ・レスキュー隊</h3>
-            <div class="org-project">行き場のない犬の保護と里親探し</div>
-            <p>年間100頭前後の保護犬を引き取り、全頭に避妊去勢手術を実施。高齢犬・病気犬も積極的に受け入れ、小中学校への啓発訪問も精力的に続けています。</p>
-            <div class="org-links">
-              <a class="org-link" href="http://aidog.jpn.com/" target="_blank" rel="noopener">HP</a>
-              <a class="org-link" href="https://www.instagram.com/aidog_rescue/" target="_blank" rel="noopener">Instagram</a>
+            <div class="org-card-body">
+              <span class="org-pref">東京都</span>
+              <h3>アイドッグ・レスキュー隊</h3>
+              <div class="org-project">行き場のない犬の保護と里親探し</div>
+              <p>年間100頭前後の保護犬を引き取り、全頭に避妊去勢手術を実施。高齢犬・病気犬も積極的に受け入れ、小中学校への啓発訪問も精力的に続けています。</p>
+              <div class="org-links">
+                <a class="org-link" href="http://aidog.jpn.com/" target="_blank" rel="noopener">HP</a>
+                <a class="org-link" href="https://www.instagram.com/aidog_rescue/" target="_blank" rel="noopener">Instagram</a>
+              </div>
             </div>
           </div>
 
