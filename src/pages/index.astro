@@ -1,34 +1,38 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-
-const SITE_TITLE = 'Heartful Eve基金';
-const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛護団体を支援する慈善基金です。';
+// Heartful Eve基金 トップページ
+const SITE_TITLE = 'Heartful Eve基金｜犬の殺処分ゼロを目指す助成金・補助金';
+const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛護団体・個人への助成金・補助金支援を行う慈善基金です。保護犬の譲渡活動、避妊去勢手術推進、適正飼育啓発などを助成しています。';
 ---
 
 <!doctype html>
 <html lang="ja">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heartful Eve基金-犬の殺処分ゼロを目指す助成金・補助金</title>
+    <meta name="description" content={SITE_DESCRIPTION} />
+    <meta property="og:title" content={SITE_TITLE} />
+    <meta property="og:description" content={SITE_DESCRIPTION} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <style>
-      /* ===== リセット・ベース ===== */
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
       :root {
-        --bg:        #FEFBF0;
-        --bg-section:#FDF7E3;
-        --amber:     #C17B3F;
+        --bg:         #FEFBF0;
+        --bg-section: #FDF7E3;
+        --amber:      #C17B3F;
         --amber-light:#E8A96A;
-        --text:      #2C2416;
-        --text-muted:#7A6A52;
-        --border:    #E8D9BF;
-        --white:     #FFFFFF;
-        --radius:    12px;
-        --max-w:     1100px;
+        --text:       #2C2416;
+        --text-muted: #7A6A52;
+        --border:     #E8D9BF;
+        --white:      #FFFFFF;
+        --radius:     12px;
+        --max-w:      1100px;
       }
 
       html { background: var(--bg); color: var(--text); font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif; }
+      a { color: inherit; }
 
       /* ===== HERO ===== */
       .hero {
@@ -55,18 +59,14 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
         margin-bottom: 20px;
         color: var(--text);
       }
-      .hero h1 span {
-        color: var(--amber);
-      }
+      .hero h1 span { color: var(--amber); }
       .hero-desc {
         font-size: clamp(0.95rem, 2vw, 1.1rem);
         color: var(--text-muted);
         line-height: 1.8;
-        max-width: 620px;
+        max-width: 640px;
         margin: 0 auto 48px;
       }
-
-      /* ===== 写真3枚 ===== */
       .hero-photos {
         display: grid;
         grid-template-columns: 1fr 1.4fr 1fr;
@@ -85,7 +85,7 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
       .hero-photos img:nth-child(2) { height: 300px; border-radius: 16px; }
       .hero-photos img:nth-child(3) { height: 220px; }
 
-      /* ===== STATUS BADGE ===== */
+      /* ===== STATUS BAR ===== */
       .status-bar {
         background: var(--text);
         color: var(--bg);
@@ -94,13 +94,10 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
         font-size: 0.85rem;
         letter-spacing: 0.05em;
       }
-      .status-bar span {
-        color: var(--amber-light);
-        font-weight: 700;
-      }
+      .status-bar span { color: var(--amber-light); font-weight: 700; }
 
       /* ===== SECTION COMMON ===== */
-      section { padding: 72px 24px; }
+      .section-wrap { padding: 72px 24px; }
       .inner { max-width: var(--max-w); margin: 0 auto; }
       .section-label {
         font-size: 0.72rem;
@@ -119,44 +116,99 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
         color: var(--text-muted);
         line-height: 1.85;
         font-size: 0.97rem;
-        max-width: 680px;
+        max-width: 700px;
       }
 
       /* ===== 基金概要 ===== */
       .about { background: var(--bg-section); }
-      .about-grid {
+      .stats-row {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
         margin-top: 40px;
+        margin-bottom: 32px;
       }
-      .about-card {
+      .stat-card {
         background: var(--white);
         border: 1px solid var(--border);
         border-radius: var(--radius);
-        padding: 28px;
+        padding: 24px 20px;
+        text-align: center;
       }
-      .about-card h3 {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-        margin-bottom: 8px;
-        letter-spacing: 0.05em;
-      }
-      .about-card p {
-        font-size: 1rem;
-        line-height: 1.7;
-        color: var(--text);
-      }
-      .about-card .big {
-        font-size: 1.7rem;
+      .stat-card .num {
+        font-size: 2rem;
         font-weight: 700;
         color: var(--amber);
-        line-height: 1.2;
-        margin-bottom: 4px;
+        line-height: 1.1;
+        margin-bottom: 6px;
       }
+      .stat-card .unit { font-size: 1rem; }
+      .stat-card .label {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        letter-spacing: 0.04em;
+      }
+      .about-body {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 28px 32px;
+        line-height: 1.85;
+        font-size: 0.95rem;
+        color: var(--text-muted);
+      }
+      .about-body p + p { margin-top: 12px; }
+
+      /* PDF リンク */
+      .pdf-link-wrap {
+        margin-top: 24px;
+      }
+      .pdf-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.88rem;
+        color: var(--amber);
+        text-decoration: none;
+        border: 1px solid var(--amber-light);
+        border-radius: 8px;
+        padding: 10px 18px;
+        background: var(--white);
+        transition: background 0.15s, color 0.15s;
+      }
+      .pdf-link:hover {
+        background: var(--amber);
+        color: var(--white);
+        border-color: var(--amber);
+      }
+      .pdf-icon { font-size: 1rem; }
+
+      /* ===== 助成概要テーブル ===== */
+      .grant-table-wrap { background: var(--bg); }
+      .grant-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 32px;
+        font-size: 0.92rem;
+      }
+      .grant-table tr { border-bottom: 1px solid var(--border); }
+      .grant-table th {
+        width: 200px;
+        text-align: left;
+        padding: 16px 0;
+        color: var(--text-muted);
+        font-weight: 500;
+        vertical-align: top;
+      }
+      .grant-table td {
+        padding: 16px 0;
+        line-height: 1.75;
+        color: var(--text);
+      }
+      .grant-table td strong { color: var(--amber); }
 
       /* ===== 活動分野 ===== */
-      .activities { background: var(--bg); }
+      .activities { background: var(--bg-section); }
       .activity-list {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -172,19 +224,11 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
         align-items: flex-start;
         gap: 12px;
       }
-      .activity-icon {
-        font-size: 1.4rem;
-        flex-shrink: 0;
-        margin-top: 2px;
-      }
-      .activity-item p {
-        font-size: 0.9rem;
-        line-height: 1.6;
-        color: var(--text);
-      }
+      .activity-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+      .activity-item p { font-size: 0.9rem; line-height: 1.6; color: var(--text); }
 
       /* ===== 支援団体 ===== */
-      .orgs { background: var(--bg-section); }
+      .orgs { background: var(--bg); }
       .orgs-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -198,9 +242,7 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
         padding: 24px;
         transition: box-shadow 0.2s;
       }
-      .org-card:hover {
-        box-shadow: 0 6px 24px rgba(193,123,63,0.12);
-      }
+      .org-card:hover { box-shadow: 0 6px 24px rgba(193,123,63,0.12); }
       .org-pref {
         display: inline-block;
         font-size: 0.7rem;
@@ -211,29 +253,10 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
         padding: 2px 10px;
         margin-bottom: 10px;
       }
-      .org-card h3 {
-        font-size: 1rem;
-        font-weight: 700;
-        margin-bottom: 6px;
-        line-height: 1.4;
-      }
-      .org-card .org-project {
-        font-size: 0.8rem;
-        color: var(--amber);
-        margin-bottom: 10px;
-        font-weight: 600;
-      }
-      .org-card p {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-        line-height: 1.7;
-        margin-bottom: 16px;
-      }
-      .org-links {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-      }
+      .org-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; line-height: 1.4; }
+      .org-project { font-size: 0.8rem; color: var(--amber); margin-bottom: 10px; font-weight: 600; }
+      .org-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; }
+      .org-links { display: flex; gap: 8px; flex-wrap: wrap; }
       .org-link {
         font-size: 0.75rem;
         color: var(--amber);
@@ -243,35 +266,32 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
         padding: 4px 10px;
         transition: background 0.15s, color 0.15s;
       }
-      .org-link:hover {
-        background: var(--amber);
-        color: var(--white);
-        border-color: var(--amber);
-      }
+      .org-link:hover { background: var(--amber); color: var(--white); border-color: var(--amber); }
 
-      /* ===== INFO ===== */
-      .info { background: var(--bg); }
+      /* ===== 基金情報テーブル ===== */
+      .fundinfo { background: var(--bg-section); }
       .info-table {
         width: 100%;
         border-collapse: collapse;
         margin-top: 32px;
-        font-size: 0.9rem;
+        font-size: 0.92rem;
       }
-      .info-table tr {
-        border-bottom: 1px solid var(--border);
-      }
+      .info-table tr { border-bottom: 1px solid var(--border); }
       .info-table th {
-        width: 180px;
+        width: 200px;
         text-align: left;
         padding: 16px 0;
         color: var(--text-muted);
         font-weight: 500;
         vertical-align: top;
       }
-      .info-table td {
-        padding: 16px 0;
-        line-height: 1.7;
+      .info-table td { padding: 16px 0; line-height: 1.75; }
+      .info-table a {
+        color: var(--amber);
+        text-decoration: underline;
+        text-underline-offset: 3px;
       }
+      .info-table a:hover { opacity: 0.75; }
 
       /* ===== FOOTER ===== */
       .site-footer {
@@ -280,93 +300,167 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
         text-align: center;
         padding: 40px 24px;
         font-size: 0.8rem;
-        line-height: 1.8;
+        line-height: 1.9;
       }
-      .site-footer strong {
-        color: var(--bg);
-      }
-      .site-footer a {
-        color: var(--amber-light);
-      }
+      .site-footer strong { color: var(--bg); }
+      .site-footer a { color: var(--amber-light); text-decoration: none; }
+      .site-footer a:hover { text-decoration: underline; }
 
       /* ===== RESPONSIVE ===== */
-      @media (max-width: 680px) {
+      @media (max-width: 760px) {
+        .stats-row { grid-template-columns: 1fr 1fr; }
         .hero-photos { grid-template-columns: 1fr 1fr; }
         .hero-photos img:nth-child(3) { display: none; }
         .hero-photos img { height: 180px !important; }
-        .about-grid { grid-template-columns: 1fr; }
-        .info-table th { width: 120px; font-size: 0.82rem; }
+        .grant-table th, .info-table th { width: 110px; font-size: 0.82rem; }
       }
     </style>
   </head>
 
   <body>
 
-    <!-- HERO -->
+    <!-- ===== HERO ===== -->
     <section class="hero">
-      <div class="hero-eyebrow">Heartful Eve 基金</div>
+      <div class="hero-eyebrow">Heartful Eve 基金｜動物愛護助成金</div>
       <h1>犬と人が、<span>ともに生きる</span>社会へ。</h1>
       <p class="hero-desc">
-        Heartful Eve基金は、犬の殺処分ゼロを目指す取り組みを支援するために設立された慈善基金です。
-        関東地方で活動する保護団体・個人を対象に、保護・譲渡・避妊去勢・啓発活動を助成しています。
+        Heartful Eve基金は、<strong>犬の殺処分ゼロ</strong>を目指す取り組みを支援するために設立された慈善基金です。
+        関東地方で保護犬の譲渡・避妊去勢手術・適正飼育啓発などに取り組む団体・個人への
+        <strong>助成金・補助金</strong>支援を行っています。
       </p>
       <div class="hero-photos">
         <img src="/IMG_0380.JPG" alt="お散歩中のチワワ" />
-        <img src="/IIKY9380.jpg" alt="ケーキをじっと見つめるチワワ" />
+        <img src="/IIKY9380.jpg" alt="チワワ" />
         <img src="/IMG_0587.JPG" alt="くつろぐチワワ" />
       </div>
     </section>
 
-    <!-- STATUS -->
+    <!-- ===== STATUS BAR ===== -->
     <div class="status-bar">
-      第2回募集は終了しました。現在、<span>6団体</span>への支援を実施中です（2026年4月〜2027年3月）。
+      第2回募集は終了しました。現在、<span>6団体・総額180万円</span>の助成金支援を実施中です（2026年4月〜2027年3月）。
     </div>
 
-    <!-- 基金概要 -->
-    <section class="about">
+    <!-- ===== 基金概要 ===== -->
+    <section class="section-wrap about">
       <div class="inner">
         <div class="section-label">About</div>
-        <h2 class="section-title">基金について</h2>
+        <h2 class="section-title">Heartful Eve基金について</h2>
         <p class="section-lead">
-          この基金は、「犬の殺処分を減らしたい」という想いを持つ匿名の個人が設立しました。
-          公益財団法人公益推進協会を通じて、関東1都6県で活動する非営利団体・個人を支援しています。
+          日本では今もなお、年間数千匹の犬が殺処分されています。その背景には飼育放棄、無計画な繁殖、店舗における過剰供給があります。
+          Heartful Eve基金は、この現状を変えたいという想いを持つ匿名の個人が設立した慈善基金です。
+          公益財団法人公益推進協会を通じて、関東1都6県で<strong>動物愛護・保護犬支援</strong>に取り組む非営利団体・個人に助成金を交付しています。
         </p>
-        <div class="about-grid">
-          <div class="about-card">
-            <h3>運営財団</h3>
-            <p>公益財団法人<br><strong>公益推進協会</strong></p>
+
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="num">6<span class="unit">団体</span></div>
+            <div class="label">第2回 助成件数</div>
           </div>
-          <div class="about-card">
-            <h3>支援対象エリア</h3>
-            <p>関東1都6県<br>（東京・神奈川・埼玉・千葉・茨城・栃木・群馬）</p>
+          <div class="stat-card">
+            <div class="num">180<span class="unit">万円</span></div>
+            <div class="label">第2回 助成総額</div>
           </div>
-          <div class="about-card">
-            <h3>第2回 助成実績</h3>
-            <div class="big">6団体</div>
-            <p>合計 最大180万円を支援</p>
+          <div class="stat-card">
+            <div class="num">30<span class="unit">万円</span></div>
+            <div class="label">上限（団体1件あたり）</div>
           </div>
-          <div class="about-card">
-            <h3>助成対象期間</h3>
-            <p>2026年4月1日<br>〜 2027年3月31日</p>
+          <div class="stat-card">
+            <div class="num">10<span class="unit">万円</span></div>
+            <div class="label">上限（個人1件あたり）</div>
           </div>
+        </div>
+
+        <div class="about-body">
+          <p>
+            犬の殺処分は、世界中で動物福祉の観点から重要な課題とされており、近年は日本でも減少傾向にあるものの、まだゼロには至っていません。
+            Heartful Eve基金は、犬と人間がいつまでも共生できる社会の実現に向けて、現場で活動する団体・個人を
+            <strong>助成金・補助金</strong>という形で継続的に支援します。
+          </p>
+          <p>
+            動物愛護の観点から飼育と繁殖のバランスが保たれた状態を目指し、
+            保護犬の譲渡促進・避妊去勢手術の推進・適正飼育の啓発など、
+            <strong>殺処分ゼロ</strong>に向けた多様な活動を応援しています。
+          </p>
+        </div>
+
+        <div class="pdf-link-wrap">
+          <a class="pdf-link" href="/youkou_-Heartful2026.pdf" target="_blank" rel="noopener">
+            <span class="pdf-icon">📄</span>
+            第2回 募集要項PDFをダウンロード
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- 活動分野 -->
-    <section class="activities">
+    <!-- ===== 助成概要 ===== -->
+    <section class="section-wrap grant-table-wrap">
+      <div class="inner">
+        <div class="section-label">Grant Overview</div>
+        <h2 class="section-title">助成金・補助金の概要</h2>
+        <p class="section-lead">第2回（2026年度）の助成金概要です。第3回の募集については未定です。</p>
+        <table class="grant-table">
+          <tr>
+            <th>助成額</th>
+            <td>
+              <strong>団体：1件あたり30万円以内</strong><br>
+              個人：1件あたり10万円以内<br>
+              ※採択時に選考委員会が決定
+            </td>
+          </tr>
+          <tr>
+            <th>助成件数</th>
+            <td>第2回実績：<strong>6件</strong>（募集上限は20件程度）</td>
+          </tr>
+          <tr>
+            <th>助成総額</th>
+            <td><strong>180万円</strong>（第2回実績）</td>
+          </tr>
+          <tr>
+            <th>対象エリア</th>
+            <td>関東1都6県（茨城・栃木・群馬・埼玉・千葉・東京・神奈川）</td>
+          </tr>
+          <tr>
+            <th>助成対象期間</th>
+            <td>2026年4月1日 〜 2027年3月31日</td>
+          </tr>
+          <tr>
+            <th>対象条件</th>
+            <td>
+              Instagram による活動広報実績が6か月以上ある非営利団体・個人<br>
+              ※団体は団体名義の銀行口座を持つこと
+            </td>
+          </tr>
+          <tr>
+            <th>対象外経費</th>
+            <td>人件費は助成対象外。補助率の制限はなし。</td>
+          </tr>
+          <tr>
+            <th>募集要項</th>
+            <td>
+              <a href="/youkou_-Heartful2026.pdf" target="_blank" rel="noopener">📄 第2回 募集要項PDF（ダウンロード）</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== 活動分野 ===== -->
+    <section class="section-wrap activities">
       <div class="inner">
         <div class="section-label">Supported Activities</div>
-        <h2 class="section-title">支援している活動</h2>
-        <p class="section-lead">保護犬に関わる以下の活動を助成対象としています。</p>
+        <h2 class="section-title">助成金の対象となる活動</h2>
+        <p class="section-lead">
+          保護犬に関わる以下の活動が、Heartful Eve基金の助成金・補助金の対象です。
+          殺処分ゼロに向けた現場の取り組みを幅広く支援します。
+        </p>
         <div class="activity-list">
           <div class="activity-item">
             <div class="activity-icon">🐾</div>
-            <p>譲渡活動の強化や保護犬の里親探し</p>
+            <p>譲渡活動の強化や<br>保護犬の里親探し</p>
           </div>
           <div class="activity-item">
             <div class="activity-icon">✂️</div>
-            <p>避妊・去勢手術の推進や適正飼育の啓発</p>
+            <p>避妊・去勢手術の推進や<br>適正飼育の啓発</p>
           </div>
           <div class="activity-item">
             <div class="activity-icon">🏠</div>
@@ -374,23 +468,24 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
           </div>
           <div class="activity-item">
             <div class="activity-icon">🏥</div>
-            <p>病気・けが等の必要手術、受診</p>
+            <p>病気・けが等の<br>必要手術・受診</p>
           </div>
           <div class="activity-item">
             <div class="activity-icon">💛</div>
-            <p>その他、犬の保護にかかる活動全般</p>
+            <p>その他、犬の保護に<br>かかる活動全般</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 支援団体 -->
-    <section class="orgs">
+    <!-- ===== 支援団体 ===== -->
+    <section class="section-wrap orgs">
       <div class="inner">
         <div class="section-label">Supported Organizations</div>
-        <h2 class="section-title">第2回 支援団体</h2>
+        <h2 class="section-title">第2回 支援団体（6団体）</h2>
         <p class="section-lead">
-          2026年度は以下の6団体を支援しています。それぞれの活動詳細はリンクからご覧ください。
+          2026年度は関東の6団体に助成金を交付し、保護犬の譲渡活動・避妊去勢手術・医療支援・殺処分ゼロに向けた啓発活動を支援しています。
+          各団体の詳細はリンクからご覧ください。
         </p>
         <div class="orgs-grid">
 
@@ -464,8 +559,8 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
       </div>
     </section>
 
-    <!-- 基金情報 -->
-    <section class="info">
+    <!-- ===== 基金情報 ===== -->
+    <section class="section-wrap fundinfo">
       <div class="inner">
         <div class="section-label">Fund Info</div>
         <h2 class="section-title">基金情報</h2>
@@ -484,14 +579,17 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
           </tr>
           <tr>
             <th>運営</th>
-            <td>公益財団法人 公益推進協会<br>〒162-0826 東京都新宿区市谷船河原町9-3 公益ビル</td>
+            <td>
+              公益財団法人 公益推進協会<br>
+              〒162-0826 東京都新宿区市谷船河原町9-3 公益ビル
+            </td>
           </tr>
           <tr>
             <th>対象エリア</th>
             <td>関東1都6県（茨城・栃木・群馬・埼玉・千葉・東京・神奈川）</td>
           </tr>
           <tr>
-            <th>第2回募集期間</th>
+            <th>第2回 募集期間</th>
             <td>2026年1月5日 〜 2026年3月31日（募集終了）</td>
           </tr>
           <tr>
@@ -499,14 +597,22 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
             <td>2026年4月1日 〜 2027年3月31日</td>
           </tr>
           <tr>
+            <th>募集要項</th>
+            <td>
+              <a href="/youkou_-Heartful2026.pdf" target="_blank" rel="noopener">📄 第2回 募集要項PDF（ダウンロード）</a>
+            </td>
+          </tr>
+          <tr>
             <th>お問い合わせ</th>
-            <td><a href="mailto:info@kosuikyo.com">info@kosuikyo.com</a><br>件名：「【問合せ】Heartful Eve基金_団体名」</td>
+            <td>
+              <a href="https://kosuikyo.com/%e3%81%8a%e5%95%8f%e5%90%88%e3%81%9b" target="_blank" rel="noopener">公益推進協会まで</a>
+            </td>
           </tr>
         </table>
       </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- ===== FOOTER ===== -->
     <footer class="site-footer">
       <strong>Heartful Eve 基金</strong><br>
       運営：公益財団法人 公益推進協会<br>
