@@ -331,9 +331,13 @@ const SITE_DESCRIPTION = '犬の殺処分ゼロを目指し、関東の動物愛
       /* ===== RESPONSIVE ===== */
       @media (max-width: 760px) {
         .stats-row { grid-template-columns: 1fr 1fr; }
-        .hero-photos { grid-template-columns: 1fr 1fr; }
-        .hero-photos img:nth-child(3) { display: none; }
-        .hero-photos img { height: 180px !important; }
+        .hero-photos {
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 6px;
+        }
+        .hero-photos img:nth-child(1) { height: 120px !important; }
+        .hero-photos img:nth-child(2) { height: 120px !important; }
+        .hero-photos img:nth-child(3) { height: 120px !important; display: block; }
         .grant-table th, .info-table th { width: 110px; font-size: 0.82rem; }
       }
     </style>
